@@ -1,6 +1,6 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
 from app.commands import show_schedule, show_news, show_players, cheer, start, collections, ask
-from config import TELEGRAM_TOKEN
+from app.config import TELEGRAM_TOKEN
 
 def run_bot():
     app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
