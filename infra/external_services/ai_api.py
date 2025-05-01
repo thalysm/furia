@@ -1,6 +1,5 @@
 import requests
 
-OLLAMA_API_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "llama3"
 
 def ask_question(question: str) -> str:
@@ -57,6 +56,7 @@ Informações adicionais:
     }
 
     try:
+        OLLAMA_API_URL = "http://localhost:11434/api/generate"
         response = requests.post(OLLAMA_API_URL, json=payload)
         response.raise_for_status()
         data = response.json()
@@ -64,3 +64,9 @@ Informações adicionais:
     except Exception as e:
         print(f"Erro ao consultar o modelo: {e}")
         return "Erro ao acessar a IA local."
+    finally:
+        OLLAMA_API_URL = "http://ollama_furia:11434/api/generate"
+        response = requests.post(OLLAMA_API_URL, json=payload)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("response", "Não consegui entender.")
